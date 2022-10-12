@@ -2,13 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.blog.api.blog.entity;
+package com.blog.api.blog.dto;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
-import javax.persistence.*;
 import lombok.*;
-
 
 /**
  *
@@ -17,27 +15,24 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Getter
-@Setter
-@Entity
-@Table(name = "t_article")
-public class TArticle implements Serializable{
+@Data
+public class TArticleDto {
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @JsonProperty("id")
     private Long id;
     
+     @JsonProperty("title")
     private String title;
+     
+      @JsonProperty("description")
     private String description;
+      
+       @JsonProperty("save")
     private Date save;
     
-    @ManyToOne
-    @JoinColumn(name= "fk_category")
-    private TCategory fk_category;
+    @JsonProperty("fk_category")
+    private TCategoryDto fk_category;
     
-    @ManyToOne
-    @JoinColumn(name= "fk_user")
-    private TUser fk_user;
-    
-    
+     @JsonProperty("fk_user")
+    private TUserDto fk_user;
 }
